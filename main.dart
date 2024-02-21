@@ -79,27 +79,37 @@ int getMainMenuChoice() {
 
 void adminMenu(List<GroceryItem> groceryItems) {
   print('Admin Menu');
-  print('1. Add Grocery Item');
-  print('2. Remove Grocery Item');
-  print('3. Update Grocery Item');
-  print('4. Go back');
+  print('1. View Grocery List');
+  print('2. Add Grocery Item');
+  print('3. Remove Grocery Item');
+  print('4. Update Grocery Item');
+  print('5. Go back');
 
   var input = stdin.readLineSync();
   switch (input) {
     case '1':
-      addGroceryItem(groceryItems);
+      viewGroceryList(groceryItems);
       break;
     case '2':
-      removeGroceryItem(groceryItems);
+      addGroceryItem(groceryItems);
       break;
     case '3':
-      updateGroceryItem(groceryItems);
+      removeGroceryItem(groceryItems);
       break;
     case '4':
+    updateGroceryItem(groceryItems);
+      break;
+    case '5':
       break;
     default:
       print('Invalid input');
       adminMenu(groceryItems);
+  }
+}
+
+void viewGroceryList(List <GroceryItem> groceryItems){
+  for (var item in groceryItems) {
+    print('${item.name} (Quantity: ${item.quantity}, Price: ${item.price})');
   }
 }
 
@@ -127,6 +137,7 @@ void addGroceryItem(List<GroceryItem> groceryItems) {
 void removeGroceryItem(List<GroceryItem> groceryItems) {
   print('Enter the name of the grocery item to remove:');
   var name = stdin.readLineSync();
+  
 
   groceryItems.removeWhere((item) => item.name == name);
 
@@ -257,6 +268,11 @@ void addItemToCart(List<GroceryItem> groceryItems, Cart cart) {
 }
 
 void removeItemFromCart(List<GroceryItem> groceryItems, Cart cart) {
+  if (cart.items.isEmpty) { 
+  print('Cart is empty'); 
+  return; 
+  }
+
   for (var item in cart.items) {
     print('${item.name}: ${item.quantity}'); 
   }
