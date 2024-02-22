@@ -248,7 +248,7 @@ void addItemToCart(List<GroceryItem> groceryItems, Cart cart) {
     print('Enter the quantity to add:');
     var quantity = int.parse(stdin.readLineSync() ?? '0');
     // checks if we have enough quantity
-    if (quantity < selectedItem.quantity) {
+    if (quantity <= selectedItem.quantity) {
       cart.addItem(GroceryItem(selectedItem.name, quantity, selectedItem.price)); //adds item into cart
       selectedItem.quantity -= quantity;
     } else {

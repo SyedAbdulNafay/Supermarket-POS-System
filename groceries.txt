@@ -1,4 +1,5 @@
-milk 1kg, 5, 200.0
+milk 1kg, 4, 200.0
 wheat kg, 15, 500.0
 honey, 7, 150.0
 tea, 1, 280.0
+brown eggs, 12, 200.0
